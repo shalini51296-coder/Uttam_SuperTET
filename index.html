@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Super TET 2026 — UP Assistant Teacher Mock Test Series</title>
+<style>
+:root{
+  --brand-950:#1e1b4b; --brand-900:#28215c; --brand-800:#322a72; --brand-700:#4338ca; --brand-600:#4f46e5; --brand-500:#6366f1; --brand-100:#e0e7ff; --brand-50:#eef2ff;
+  --accent:#f59e0b; --accent-600:#d97706; --accent-100:#fef3c7;
+  --danger:#e11d48; --danger-100:#ffe4e6; --success:#059669; --success-100:#d1fae5; --warn:#d97706; --warn-100:#fef3c7;
+  --bg:#f4f5fb; --card:#ffffff; --border:#e4e7f2; --text:#1e2333; --muted:#6b7280; --muted-2:#94a3b8;
+  --radius:14px; --radius-sm:9px;
+  --shadow-sm:0 1px 2px rgba(30,27,75,.06),0 1px 1px rgba(30,27,75,.04);
+  --shadow-md:0 8px 24px -8px rgba(30,27,75,.18);
+  --shadow-lg:0 20px 45px -12px rgba(30,27,75,.28);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Noto Sans Devanagari','Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; user-select:none;
+}
+.hidden{display:none !important}
+.flex1{flex:1}
+button{font-family:inherit; cursor:pointer; border:none}
+.icon{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px;display:inline-block}
+.icon-lg{width:22px;height:22px}
+
+.scroll::-webkit-scrollbar{width:5px;height:5px}
+.scroll::-webkit-scrollbar-thumb{background:#c7cbe0;border-radius:10px}
+
+#auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px;
+  background:radial-gradient(1200px 600px at 15% -10%,#312a75 0%,var(--brand-950) 55%,#100c2e 100%);}
+.auth-card{background:var(--card);border-radius:20px;box-shadow:var(--shadow-lg);max-width:380px;width:100%;overflow:hidden}
+.auth-hero{background:linear-gradient(135deg,var(--brand-700),var(--brand-950));padding:26px 24px 20px;color:#fff;text-align:center}
+.brand-pill{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--brand-950);
+  font-weight:900;font-size:11px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;}
+.auth-hero h1{font-size:19px;font-weight:900;margin:12px 0 2px}
+.auth-hero p{font-size:11.5px;opacity:.8;margin:0}
+.auth-body{padding:22px 24px 24px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:11px;font-weight:800;color:#475069;margin-bottom:5px;letter-spacing:.02em}
+.field input{width:100%;padding:11px 12px;border-radius:10px;border:1.5px solid var(--border);font-size:13px;outline:none;transition:.15s;background:#fbfbff}
+.field input:focus{border-color:var(--brand-600);box-shadow:0 0 0 3px var(--brand-100)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-weight:800;border-radius:11px;padding:11px 16px;font-size:12.5px;transition:.15s;line-height:1}
+.btn-primary{background:linear-gradient(135deg,var(--brand-600),var(--brand-700));color:#fff;box-shadow:0 6px 16px -4px rgba(79,70,229,.5)}
+.btn-primary:hover{filter:brightness(1.07)}
+.btn-primary:active{transform:translateY(1px)}
+.btn-block{width:100%}
+.auth-msg{font-size:11.5px;font-weight:800;text-align:center;padding:8px;border-radius:8px;margin-bottom:12px}
+.auth-msg.err{background:var(--danger-100);color:var(--danger)}
+.auth-msg.ok{background:var(--success-100);color:var(--success)}
+.auth-switch{text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.link-btn{background:none;color:var(--brand-600);font-weight:800;font-size:12px;text-decoration:none}
+.link-btn:hover{text-decoration:underline}
+.demo-hint{margin-top:14px;font-size:10.5px;color:var(--muted-2);text-align:center;line-height:1.5}
+
+#main-app{flex:1;display:flex;flex-direction:column;min-height:100vh}
+header.topbar{background:linear-gradient(90deg,var(--brand-950),var(--brand-800));color:#fff;padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.topbar-left{display:flex;align-items:center;gap:8px;min-width:0}
+.topbar-logo{display:flex;align-items:center;gap:7px;font-weight:900;font-size:12.5px;white-space:nowrap}
+.topbar-logo .accent-dot{color:var(--accent)}
+.user-chip{background:rgba(255,255,255,.08);border-radius:999px;padding:4px 10px 4px 4px;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;max-width:150px}
+.user-avatar{width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--brand-950);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:10px;flex-shrink:0}
+.user-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.lang-select{background:rgba(255,255,255,.1);color:#fde68a;border:1px solid rgba(255,255,255,.15);font-weight:800;
+  border-radius:8px;padding:6px 8px;font-size:10.5px;outline:none}
+.lang-select option{color:#1e2333}
+.timer-chip{display:none;align-items:center;gap:5px;background:var(--danger);padding:6px 11px;border-radius:8px;
+  font-weight:900;font-size:12px;font-variant-numeric:tabular-nums;box-shadow:0 3px 10px rgba(225,29,72,.4)}
+.timer-chip.low{background:#9f1239;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.logout-btn{background:rgba(255,255,255,.08);color:#cbd0e6;border-radius:8px;padding:6px 10px;font-size:10.5px;font-weight:800;display:flex;align-items:center;gap:4px}
+.logout-btn:hover{background:rgba(255,255,255,.16);color:#fff}
+
+main.container{flex:1;max-width:1280px;width:100%;margin:0 auto;padding:14px 14px 28px;display:flex;flex-direction:column;gap:14px}
+
+.hero-banner{background:linear-gradient(120deg,var(--brand-800) 0%,var(--brand-600) 60%,#7c6bf0 100%);
+  border-radius:var(--radius);padding:22px 22px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-md)}
+.hero-banner::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%)}
+.hero-banner h2{font-size:19px;font-weight:900;margin:0 0 4px;position:relative}
+.hero-banner p{font-size:12px;opacity:.85;margin:0 0 14px;position:relative}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;position:relative}
+.hero-tag{background:rgba(255,255,255,.14);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,.22);
+  padding:5px 11px;border-radius:999px;font-size:10.5px;font-weight:800;display:flex;align-items:center;gap:5px}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:680px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px;box-shadow:var(--shadow-sm)}
+.stat-card .lbl{font-size:9.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:4px}
+.stat-card .val{font-size:19px;font-weight:900;color:var(--brand-950);margin-top:3px}
+
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+.panel-split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.panel-split{grid-template-columns:1fr}}
+.panel-cta{display:flex;flex-direction:column;justify-content:space-between;gap:10px;border-radius:var(--radius)}
+.panel-cta h3{font-size:12.5px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:6px}
+.panel-cta p{font-size:11px;color:var(--muted);margin:0;line-height:1.45}
+.panel-adaptive{background:linear-gradient(135deg,var(--warn-100),#fff);border:1px solid #fde8b6}
+.panel-fresh{background:linear-gradient(135deg,var(--brand-50),#fff);border:1px solid #dfe3fb}
+.btn-amber{background:linear-gradient(135deg,var(--accent),var(--accent-600));color:#3a2308;box-shadow:0 6px 16px -4px rgba(217,119,6,.4)}
+.btn-amber:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn-indigo{background:linear-gradient(135deg,var(--brand-700),var(--brand-950));color:#fff;box-shadow:0 6px 16px -4px rgba(67,56,202,.4)}
+
+.section-title{font-size:11px;font-weight:900;color:#475069;text-transform:uppercase;letter-spacing:.06em;margin:2px 0 2px}
+.set-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:900px){.set-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.set-grid{grid-template-columns:repeat(2,1fr)}}
+.set-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:left;
+  display:flex;flex-direction:column;gap:9px;transition:.15s;position:relative;overflow:hidden}
+.set-card:hover{border-color:var(--brand-500);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.set-card .top-row{display:flex;justify-content:space-between;align-items:flex-start}
+.set-card .set-name{font-weight:900;font-size:12.5px;color:var(--brand-950)}
+.set-card .set-play{color:var(--brand-600)}
+.set-card .set-meta{font-size:9.5px;font-weight:700;color:var(--muted-2)}
+.set-badge{position:absolute;top:8px;right:8px;font-size:8.5px;font-weight:900;padding:2px 7px;border-radius:999px}
+.badge-done{background:var(--success-100);color:var(--success)}
+.badge-best{background:var(--accent-100);color:var(--accent-600)}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(15,13,40,.55);display:flex;align-items:center;justify-content:center;
+  z-index:100;padding:16px;backdrop-filter:blur(2px)}
+.modal-card{background:var(--card);border-radius:16px;max-width:460px;width:100%;box-shadow:var(--shadow-lg);overflow:hidden;max-height:90vh;display:flex;flex-direction:column}
+.modal-head{background:linear-gradient(120deg,var(--brand-800),var(--brand-600));color:#fff;padding:16px 20px}
+.modal-head h3{margin:0;font-size:15px;font-weight:900;display:flex;align-items:center;gap:7px}
+.modal-head p{margin:4px 0 0;font-size:11px;opacity:.85}
+.modal-body{padding:18px 20px;overflow-y:auto}
+.instr-list{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.instr-list li{display:flex;gap:9px;font-size:12px;line-height:1.5;color:#374057}
+.instr-list .num{flex-shrink:0;width:19px;height:19px;border-radius:50%;background:var(--brand-100);color:var(--brand-700);
+  font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.instr-marks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+.instr-marks div{background:#f8f9fd;border:1px solid var(--border);border-radius:9px;padding:8px 10px;font-size:11px}
+.instr-marks b{display:block;font-size:14px;color:var(--brand-950)}
+.check-row{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:#374057;margin-bottom:14px}
+.modal-foot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
+.btn-ghost{background:#f1f2f8;color:#475069}
+
+#exam-screen{flex:1;display:grid;grid-template-columns:1fr 300px;gap:12px;align-items:start}
+@media(max-width:900px){#exam-screen{grid-template-columns:1fr}}
+.exam-main{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;min-height:480px}
+.exam-topbar{background:#f8f9fd;border-bottom:1px solid var(--border);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.q-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge-subject{background:var(--brand-950);color:#fff;font-weight:800;padding:4px 9px;border-radius:6px;font-size:10px}
+.badge-topic{background:var(--accent-100);color:#92400e;font-weight:700;padding:4px 9px;border-radius:6px;font-size:10px;border:1px solid #fbd889}
+.q-progress{font-weight:800;font-size:11px;color:#475069}
+.q-progress-bar{width:100%;height:4px;background:#eceefa;border-radius:2px;margin-top:6px;overflow:hidden}
+.q-progress-fill{height:100%;background:linear-gradient(90deg,var(--brand-600),var(--accent));border-radius:2px;transition:width .2s}
+.q-body{padding:20px;flex:1;overflow-y:auto}
+.q-text{font-size:14.5px;font-weight:700;line-height:1.6;color:#1a1f30;margin:0 0 16px}
+.q-passage{background:#f8f9fd;border:1px dashed var(--border);border-radius:10px;padding:12px 14px;font-size:12px;
+  line-height:1.6;color:#374057;margin-bottom:14px}
+.opt-list{display:flex;flex-direction:column;gap:9px}
+.opt-btn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 13px;border-radius:11px;
+  border:1.5px solid var(--border);background:#fbfbff;font-size:12.5px;font-weight:600;color:#374057;transition:.13s}
+.opt-btn:hover{border-color:var(--brand-500);background:var(--brand-50)}
+.opt-btn.selected{border-color:var(--brand-600);background:var(--brand-50);color:var(--brand-950);font-weight:800;
+  box-shadow:0 0 0 3px var(--brand-100)}
+.opt-letter{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#eceefa;color:#475069;font-weight:900;
+  font-size:11px;display:flex;align-items:center;justify-content:center}
+.opt-btn.selected .opt-letter{background:var(--brand-600);color:#fff}
+.exam-footbar{border-top:1px solid var(--border);background:#f8f9fd;padding:10px 14px;display:flex;justify-content:space-between;
+  gap:8px;flex-wrap:wrap}
+.btn-sm{padding:8px 13px;font-size:11px;border-radius:9px}
+.btn-purple{background:#7c3aed;color:#fff}
+.btn-clear{background:#e9ebf5;color:#4b5369}
+.btn-nav{background:#3c4257;color:#fff}
+.btn-save{background:linear-gradient(135deg,var(--success),#047857);color:#fff}
+.btn-nav:disabled{opacity:.4;cursor:not-allowed}
+
+.palette-panel{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-sm);
+  padding:13px;position:sticky;top:66px}
+.palette-head{font-weight:900;font-size:10.5px;color:#475069;text-transform:uppercase;letter-spacing:.05em;
+  border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:9px}
+.palette-legend{display:grid;grid-template-columns:1fr 1fr;gap:5px 8px;font-size:9.5px;font-weight:700;color:#5b6478;margin-bottom:11px}
+.legend-dot{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px}
+.palette-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;max-height:230px;overflow-y:auto;margin-bottom:12px}
+.pal-btn{aspect-ratio:1;border-radius:7px;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;position:relative}
+.pal-not-visited{background:#eceefa;color:#4b5369}
+.pal-not-answered{background:var(--danger);color:#fff}
+.pal-answered{background:var(--success);color:#fff}
+.pal-marked{background:#7c3aed;color:#fff;border-radius:50%}
+.pal-marked-answered{background:#7c3aed;color:#fff}
+.pal-marked-answered::after{content:'';position:absolute;bottom:1px;right:1px;width:6px;height:6px;background:var(--success);
+  border-radius:50%;border:1.5px solid #fff}
+.subject-jump{display:flex;flex-direction:column;gap:5px;max-height:130px;overflow-y:auto;font-size:10px;font-weight:700;
+  border-top:1px solid var(--border);padding-top:9px;margin-bottom:11px}
+.subject-jump button{background:#f6f7fc;border-radius:7px;padding:6px 8px;text-align:left;color:#475069;display:flex;justify-content:space-between}
+.subject-jump button:hover{background:var(--brand-50);color:var(--brand-700)}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--danger),#9f1239);color:#fff;padding:11px;border-radius:10px;
+  font-weight:900;font-size:12px;box-shadow:0 6px 16px -4px rgba(225,29,72,.4)}
+
+.result-wrap{max-width:900px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:14px}
+.result-hero{background:linear-gradient(120deg,var(--brand-900),var(--brand-600));border-radius:var(--radius);padding:24px;
+  color:#fff;text-align:center;box-shadow:var(--shadow-md)}
+.result-hero .score-big{font-size:38px;font-weight:900;margin:6px 0 2px}
+.result-hero .score-sub{font-size:12px;opacity:.8}
+.result-hero .verdict{display:inline-block;margin-top:10px;background:rgba(255,255,255,.15);padding:5px 14px;border-radius:999px;font-size:11px;font-weight:800}
+.res-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:680px){.res-stat-grid{grid-template-columns:repeat(2,1fr)}}
+.res-stat{border-radius:11px;padding:12px;text-align:center;border:1px solid var(--border)}
+.res-stat .lbl{font-size:9px;font-weight:800;letter-spacing:.04em}
+.res-stat .val{font-size:18px;font-weight:900;margin-top:3px}
+.rs-correct{background:var(--success-100)} .rs-correct .lbl{color:#047857} .rs-correct .val{color:#047857}
+.rs-incorrect{background:var(--danger-100)} .rs-incorrect .lbl{color:#be123c} .rs-incorrect .val{color:#be123c}
+.rs-skip{background:#f1f2f8} .rs-skip .lbl{color:#475069} .rs-skip .val{color:#475069}
+.rs-acc{background:var(--accent-100)} .rs-acc .lbl{color:#92400e} .rs-acc .val{color:#92400e}
+
+.subject-bars{display:flex;flex-direction:column;gap:9px}
+.sbar-row{display:flex;align-items:center;gap:10px;font-size:11px}
+.sbar-label{width:150px;flex-shrink:0;font-weight:700;color:#374057;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sbar-track{flex:1;height:9px;background:#eceefa;border-radius:5px;overflow:hidden}
+.sbar-fill{height:100%;border-radius:5px}
+.sbar-pct{width:38px;text-align:right;font-weight:800;color:#475069;flex-shrink:0}
+
+.heatmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px}
+.heat-card{padding:11px;border-radius:10px;border:1px solid var(--border);background:#fbfbff;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.heat-card .t-name{font-weight:800;font-size:11px;color:#1e2333}
+.heat-card .t-sub{font-size:9px;color:var(--muted);margin-top:1px}
+.heat-pct{font-weight:900;font-size:11px;padding:4px 9px;border-radius:999px;flex-shrink:0}
+.heat-strong{background:var(--success-100);color:#047857}
+.heat-moderate{background:var(--warn-100);color:#92400e}
+.heat-weak{background:var(--danger-100);color:#be123c}
+
+.result-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding-top:6px}
+
+.rev-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.rev-filter{padding:6px 12px;border-radius:999px;font-size:10.5px;font-weight:800;background:#f1f2f8;color:#475069}
+.rev-filter.active{background:var(--brand-600);color:#fff}
+.rev-card{border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;background:#fff}
+.rev-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap}
+.rev-qno{font-weight:900;font-size:11px;color:var(--brand-700)}
+.rev-status{font-size:9px;font-weight:900;padding:3px 9px;border-radius:999px}
+.rev-status.correct{background:var(--success-100);color:#047857}
+.rev-status.incorrect{background:var(--danger-100);color:#be123c}
+.rev-status.skipped{background:#f1f2f8;color:#475069}
+.rev-opt{padding:8px 11px;border-radius:8px;font-size:11.5px;margin-bottom:5px;border:1px solid var(--border);display:flex;gap:8px}
+.rev-opt.right{background:var(--success-100);border-color:#a7f3d0;font-weight:800;color:#065f46}
+.rev-opt.wrong-picked{background:var(--danger-100);border-color:#fecdd3;font-weight:800;color:#9f1239}
+.rev-exp{margin-top:8px;font-size:11px;color:#475069;background:#f8f9fd;border-radius:8px;padding:9px 11px;line-height:1.5}
+
+.footnote{text-align:center;font-size:10px;color:var(--muted-2);padding:6px 0 2px}
+
+.tab-strip{display:flex;gap:6px;background:#eceefa;padding:5px;border-radius:12px;width:fit-content}
+.tab-btn{padding:8px 16px;border-radius:9px;font-size:11.5px;font-weight:800;color:#5b6478;background:transparent}
+.tab-btn.active{background:#fff;color:var(--brand-700);box-shadow:var(--shadow-sm)}
+.tab-pane{display:flex;flex-direction:column;gap:0}
+
+.subj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:900px){.subj-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.subj-grid{grid-template-columns:1fr}}
+.subj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:left;
+  display:flex;gap:12px;align-items:flex-start;transition:.15s}
+.subj-card:hover{border-color:var(--brand-500);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.subj-emoji{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.subj-info{flex:1;min-width:0}
+.subj-name{font-weight:900;font-size:12.5px;color:var(--brand-950);margin-bottom:2px}
+.subj-meta{font-size:10px;color:var(--muted);line-height:1.4}
+.subj-count{display:inline-block;margin-top:6px;font-size:9.5px;font-weight:800;color:var(--brand-600);background:var(--brand-50);
+  padding:2px 8px;border-radius:999px}
+
+.topic-search{width:100%;padding:11px 14px;border-radius:11px;border:1.5px solid var(--border);font-size:12.5px;
+  margin-bottom:14px;outline:none;background:#fbfbff}
+.topic-search:focus{border-color:var(--brand-600);box-shadow:0 0 0 3px var(--brand-100)}
+.topic-group{margin-bottom:16px}
+.topic-group-head{display:flex;align-items:center;gap:8px;font-weight:900;font-size:11.5px;color:var(--brand-800);
+  margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.topic-list{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+@media(max-width:900px){.topic-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.topic-list{grid-template-columns:1fr}}
+.topic-chip{background:#fbfbff;border:1px solid var(--border);border-radius:9px;padding:9px 11px;text-align:left;
+  font-size:11px;font-weight:700;color:#374057;display:flex;justify-content:space-between;align-items:center;gap:6px;transition:.12s}
+.topic-chip:hover{border-color:var(--brand-500);background:var(--brand-50);color:var(--brand-700)}
+.topic-chip .go{color:var(--brand-500);flex-shrink:0}
+</style>
+</head>
+<body>
+
+<div id="main-app">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-logo"><span class="accent-dot">&#9679;</span> SUPER TET 2026</div>
+    </div>
+    <div class="topbar-right">
+      <select id="header-lang-select" onchange="changeLanguage(this.value)" class="lang-select">
+        <option value="hi">&#2361;&#2367;&#2306;&#2342;&#2368;</option>
+        <option value="en">English</option>
+      </select>
+      <div id="timer-box" class="timer-chip">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span id="time-display">120:00</span>
+      </div>
+      <button class="logout-btn" onclick="resetProgress()">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        Reset Progress
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div id="dashboard-screen">
+      <div class="hero-banner">
+        <h2>Super TET 2026 Test Series</h2>
+        <p>20 fixed mock papers + unlimited fresh papers, each built to the official UPESSC weightage.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">120 Questions</span>
+          <span class="hero-tag">120 Minutes</span>
+          <span class="hero-tag">+3 Correct</span>
+          <span class="hero-tag">-1 Incorrect</span>
+          <span class="hero-tag">Hindi / English</span>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="lbl">Tests Taken</div><div class="val" id="stat-taken">0</div></div>
+        <div class="stat-card"><div class="lbl">Average Score</div><div class="val" id="stat-avg">&mdash;</div></div>
+        <div class="stat-card"><div class="lbl">Best Score</div><div class="val" id="stat-best">&mdash;</div></div>
+        <div class="stat-card"><div class="lbl">Weak Topics</div><div class="val" id="stat-weak">0</div></div>
+      </div>
+
+      <div class="tab-strip">
+        <button class="tab-btn active" data-tab="mock" onclick="switchTab('mock')">Mock Test</button>
+        <button class="tab-btn" data-tab="subject" onclick="switchTab('subject')">Subject-wise</button>
+        <button class="tab-btn" data-tab="topic" onclick="switchTab('topic')">Topic-wise</button>
+      </div>
+
+      <!-- MOCK TEST TAB -->
+      <div id="tab-mock" class="tab-pane">
+        <div class="panel-split">
+          <div class="panel panel-cta panel-adaptive">
+            <div>
+              <h3>Adaptive Retake</h3>
+              <p id="weakness-summary-text">Complete a test to unlock weak topic targeting.</p>
+            </div>
+            <button id="adaptive-launch-btn" onclick="requestStart('adaptive')" disabled class="btn btn-amber btn-block">Launch Weak Topic Test</button>
+          </div>
+          <div class="panel panel-cta panel-fresh">
+            <div>
+              <h3>Fresh Random Test</h3>
+              <p>Every tap builds a brand-new 120-question paper, still matched to the official syllabus weightage.</p>
+            </div>
+            <button onclick="requestStart('fresh')" class="btn btn-indigo btn-block">Launch Fresh Test</button>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div class="section-title">Select a Mock Test Set</div>
+          <div id="test-sets-grid" class="set-grid" style="margin-top:9px"></div>
+        </div>
+        <div class="footnote">Every set is independently validated against the official UPESSC 2026 syllabus &amp; weightage notice.</div>
+      </div>
+
+      <!-- SUBJECT-WISE TAB -->
+      <div id="tab-subject" class="tab-pane hidden">
+        <div class="section-title" style="margin-bottom:9px">Practice by Subject &middot; 30 Questions each</div>
+        <div id="subject-grid" class="subj-grid"></div>
+      </div>
+
+      <!-- TOPIC-WISE TAB -->
+      <div id="tab-topic" class="tab-pane hidden">
+        <div class="section-title" style="margin-bottom:9px">Practice by Micro-Topic &middot; 15 Questions each</div>
+        <input id="topic-search" type="text" placeholder="Search a topic... e.g. Sandhi, Percentage, Blood Relations" class="topic-search" oninput="renderTopicList()">
+        <div id="topic-groups"></div>
+      </div>
+    </div>
+
+    <div id="exam-screen" class="hidden">
+      <div class="exam-main">
+        <div class="exam-topbar">
+          <div class="q-badges">
+            <span id="q-subject-badge" class="badge-subject">SUBJECT</span>
+            <span id="q-topic-badge" class="badge-topic">TOPIC</span>
+          </div>
+          <div style="text-align:right">
+            <div class="q-progress" id="q-number-title">Q. 1 / 120</div>
+          </div>
+        </div>
+        <div class="q-progress-bar"><div class="q-progress-fill" id="q-progress-fill" style="width:0%"></div></div>
+
+        <div class="q-body scroll">
+          <div id="q-passage" class="q-passage hidden"></div>
+          <h3 id="q-text" class="q-text"></h3>
+          <div id="options-container" class="opt-list"></div>
+        </div>
+
+        <div class="exam-footbar">
+          <div style="display:flex;gap:8px">
+            <button onclick="markForReviewAndNext()" class="btn btn-sm btn-purple">Mark &amp; Next</button>
+            <button onclick="clearResponse()" class="btn btn-sm btn-clear">Clear</button>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button id="prev-btn" onclick="navigateQuestion(-1)" class="btn btn-sm btn-nav">&larr; Back</button>
+            <button id="next-btn" onclick="saveAndNext()" class="btn btn-sm btn-save">Save &amp; Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="palette-panel">
+        <div class="palette-head">Question Palette</div>
+        <div class="palette-legend">
+          <span><span class="legend-dot" style="background:#eceefa;border:1px solid #d3d7ea"></span>Not visited</span>
+          <span><span class="legend-dot" style="background:var(--danger)"></span>Not answered</span>
+          <span><span class="legend-dot" style="background:var(--success)"></span>Answered</span>
+          <span><span class="legend-dot" style="background:#7c3aed"></span>Marked</span>
+        </div>
+        <div id="palette-grid" class="palette-grid scroll"></div>
+        <div id="subject-jump" class="subject-jump scroll"></div>
+        <button onclick="confirmSubmitExam()" class="btn-submit">SUBMIT TEST</button>
+      </div>
+    </div>
+
+    <div id="result-screen" class="hidden result-wrap">
+      <div class="result-hero">
+        <div style="font-size:11px;opacity:.8;font-weight:700" id="result-set-title">Mock Test Result</div>
+        <div class="score-big" id="res-score">0 / 360</div>
+        <div class="score-sub">Total Score</div>
+        <div class="verdict" id="res-verdict">Keep practicing!</div>
+      </div>
+
+      <div class="res-stat-grid">
+        <div class="res-stat rs-correct"><div class="lbl">CORRECT (+3)</div><div class="val" id="res-correct">0</div></div>
+        <div class="res-stat rs-incorrect"><div class="lbl">INCORRECT (-1)</div><div class="val" id="res-incorrect">0</div></div>
+        <div class="res-stat rs-skip"><div class="lbl">UNATTEMPTED</div><div class="val" id="res-skipped">0</div></div>
+        <div class="res-stat rs-acc"><div class="lbl">ACCURACY</div><div class="val" id="res-accuracy">0%</div></div>
+      </div>
+
+      <div class="panel">
+        <div class="section-title" style="margin-bottom:10px">Subject-wise Performance</div>
+        <div id="subject-bars" class="subject-bars"></div>
+      </div>
+
+      <div class="panel">
+        <div class="section-title" style="margin-bottom:10px">Micro-Topic Heatmap</div>
+        <div id="heatmap-container" class="heatmap-grid"></div>
+      </div>
+
+      <div class="result-actions">
+        <button onclick="showSolutions()" class="btn btn-indigo">View Solutions</button>
+        <button onclick="requestStart('adaptive')" id="result-adaptive-btn" class="btn btn-amber">Practice Weak Topics</button>
+        <button onclick="showDashboard()" class="btn btn-ghost">Back to Dashboard</button>
+      </div>
+    </div>
+
+    <div id="solutions-screen" class="hidden result-wrap">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+          <div class="section-title" style="margin:0">Answer Review &mdash; <span id="sol-set-title"></span></div>
+          <button onclick="backFromSolutions()" class="btn btn-sm btn-ghost">&larr; Back to Results</button>
+        </div>
+        <div class="rev-filters" id="rev-filters"></div>
+        <div id="solutions-list"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div id="instructions-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>Test Instructions</h3>
+      <p id="instr-subtitle">Please read carefully before you begin</p>
+    </div>
+    <div class="modal-body scroll">
+      <div class="instr-marks">
+        <div>Questions<b id="instr-qcount">120</b></div>
+        <div>Duration<b>120 Minutes</b></div>
+        <div>Correct Answer<b style="color:var(--success)">+3 Marks</b></div>
+        <div>Wrong Answer<b style="color:var(--danger)">-1 Mark</b></div>
+      </div>
+      <ul class="instr-list">
+        <li><span class="num">1</span>Each question has 4 options with exactly one correct answer, in both Hindi and English.</li>
+        <li><span class="num">2</span>Use the Question Palette to jump between questions; colours show your progress at a glance.</li>
+        <li><span class="num">3</span>"Mark &amp; Next" flags a question to revisit later without losing your answer.</li>
+        <li><span class="num">4</span>The timer starts as soon as you begin and auto-submits the test when it reaches zero.</li>
+        <li><span class="num">5</span>You can switch between Hindi and English at any time from the top bar.</li>
+      </ul>
+      <label class="check-row"><input type="checkbox" id="instr-ack" onchange="document.getElementById('instr-start-btn').disabled=!this.checked"> I have read and understood the instructions above.</label>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeInstructions()">Cancel</button>
+      <button class="btn btn-primary" id="instr-start-btn" disabled onclick="beginConfirmedTest()">Start Test &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<div id="submit-modal" class="modal-overlay hidden">
+  <div class="modal-card" style="max-width:380px">
+    <div class="modal-head">
+      <h3>Submit Test?</h3>
+      <p>Please review your progress before submitting</p>
+    </div>
+    <div class="modal-body">
+      <div class="instr-marks">
+        <div>Answered<b style="color:var(--success)" id="sc-answered">0</b></div>
+        <div>Not Answered<b style="color:var(--danger)" id="sc-notanswered">0</b></div>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin:0">Once submitted, you cannot change your answers.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeSubmitModal()">Continue Test</button>
+      <button class="btn btn-primary" style="background:linear-gradient(135deg,var(--danger),#9f1239)" onclick="doSubmit()">Yes, Submit</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/engine.js"></script>
+<script src="js/content-gk.js"></script>
+<script src="js/content-hindi.js"></script>
+<script src="js/content-sanskrit.js"></script>
+<script src="js/content-english.js"></script>
+<script src="js/content-science.js"></script>
+<script src="js/content-evs.js"></script>
+<script src="js/content-pedagogy.js"></script>
+<script src="js/content-it-life.js"></script>
+<script src="js/gen-math.js"></script>
+<script src="js/gen-reason.js"></script>
+<script>
+'use strict';
+
+function labelSubject(id) {
+  const b = SUP.subjectLabel(id);
+  return b ? (currentLang === 'hi' ? b.hi : b.en) : id;
+}
+function labelTopic(id) {
+  const t = SUP.topicLabel(id);
+  return t ? (currentLang === 'hi' ? t.hi : t.en) : id;
+}
+function mapQuestions(test, prefix) {
+  return test.questions.map((q, i) => ({
+    id: prefix + '_Q' + (i + 1),
+    subject: q.subject,
+    topic: q.topic,
+    question_hi: q.question_hi,
+    question_en: q.question_en,
+    options_hi: q.options_hi,
+    options_en: q.options_en,
+    answer: q.answer,
+    exp_hi: q.exp_hi,
+    exp_en: q.exp_en,
+    passage_hi: q.passage_hi,
+    passage_en: q.passage_en
+  }));
+}
+function generateTestSet(setId) { return mapQuestions(SUP.generate({ set: setId }), 'S' + setId); }
+function generateFreshTestSet() { const t = SUP.generate({}); return mapQuestions(t, 'F' + t.seed); }
+
+function subjectTopicIds(subjectId) {
+  const bp = SUP.blueprint.find(function (b) { return b.id === subjectId; });
+  const ids = [];
+  bp.parts.forEach(function (p) {
+    if (p.fixed) p.fixed.forEach(function (x) { ids.push(x[0]); });
+    if (p.rot) ids.push.apply(ids, p.rot.topics);
+  });
+  return ids;
+}
+function finalizeQuestions(items, prefix) {
+  return items.map(function (q, i) {
+    return {
+      id: prefix + '_Q' + (i + 1), subject: q.subject, topic: q.topic,
+      question_hi: q.question_hi, question_en: q.question_en,
+      options_hi: q.options_hi, options_en: q.options_en, answer: q.answer,
+      exp_hi: q.exp_hi, exp_en: q.exp_en, passage_hi: q.passage_hi, passage_en: q.passage_en
+    };
+  });
+}
+function generateBySubject(subjectId, count) {
+  const topicIds = subjectTopicIds(subjectId);
+  const r = SUP.RNG(SUP.hash('SUBJ/' + subjectId + '/' + Date.now() + '/' + Math.random()));
+  const used = new Set();
+  const shuffled = r.shuffle(topicIds.slice());
+  const base = Math.floor(count / shuffled.length);
+  let leftover = count - base * shuffled.length;
+  const out = [];
+  shuffled.forEach(function (tid) {
+    let n = base + (leftover > 0 ? 1 : 0);
+    if (leftover > 0) leftover--;
+    const t = SUP.topics[tid];
+    if (!t || n <= 0) return;
+    const cap = t.kind === 'bank' ? t.items.length : n;
+    n = Math.min(n, cap);
+    while (n > 0) {
+      try {
+        const items = SUP.produce(t, n, r, null, used);
+        items.forEach(function (q) { q.subject = subjectId; q.topic = tid; out.push(q); });
+        break;
+      } catch (e) { n--; }
+    }
+  });
+  return finalizeQuestions(r.shuffle(out), 'SUBJ_' + subjectId);
+}
+function generateByTopic(topicId, count) {
+  const t = SUP.topics[topicId];
+  if (!t) return [];
+  const r = SUP.RNG(SUP.hash('TOPIC/' + topicId + '/' + Date.now() + '/' + Math.random()));
+  const cap = t.kind === 'bank' ? t.items.length : count;
+  let n = Math.min(count, cap);
+  const used = new Set();
+  let items = [];
+  while (n > 0) {
+    try { items = SUP.produce(t, n, r, null, used); break; } catch (e) { n--; }
+  }
+  const subjectId = SUP.blueprint.find(function (b) { return subjectTopicIds(b.id).indexOf(topicId) !== -1; }).id;
+  items.forEach(function (q) { q.subject = subjectId; q.topic = topicId; });
+  return finalizeQuestions(items, 'TOPIC_' + topicId);
+}
+
+const SUBJECT_STYLE = {
+  gk: { emoji: '\uD83C\uDF0D', bg: '#e0e7ff', fg: '#3730a3' },
+  reason: { emoji: '\uD83E\uDDE9', bg: '#fce7f3', fg: '#9d174d' },
+  hindi: { emoji: '\u0905', bg: '#fef3c7', fg: '#92400e' },
+  sanskrit: { emoji: '\u0950', bg: '#ffedd5', fg: '#9a3412' },
+  english: { emoji: 'Ab', bg: '#dbeafe', fg: '#1e40af' },
+  science: { emoji: '\uD83D\uDD2C', bg: '#dcfce7', fg: '#166534' },
+  maths: { emoji: '\u00F7', bg: '#f3e8ff', fg: '#6b21a8' },
+  evs: { emoji: '\uD83C\uDF31', bg: '#d1fae5', fg: '#065f46' },
+  teaching: { emoji: '\uD83D\uDC69\u200D\uD83C\uDFEB', bg: '#fee2e2', fg: '#991b1b' },
+  psych: { emoji: '\uD83E\uDDE0', bg: '#e0f2fe', fg: '#075985' },
+  it: { emoji: '\uD83D\uDCBB', bg: '#e2e8f0', fg: '#334155' },
+  life: { emoji: '\u2B50', bg: '#fef9c3', fg: '#854d0e' }
+};
+
+let currentUser = { username: 'guest', name: 'Aspirant' };
+let currentLang = 'hi';
+let activeTab = 'mock';
+let pendingSubjectId = null;
+let pendingTopicId = null;
+let currentSetId = null;
+let examQuestions = [];
+let userAnswers = {};
+let reviewStatus = {};
+let visitedStatus = {};
+let currentQuestionIndex = 0;
+let timerSeconds = 120 * 60;
+let timerInterval = null;
+let pendingStartMode = null;
+let pendingStartSetId = null;
+let lastResult = null;
+let solutionFilter = 'all';
+
+function resetProgress() {
+  if (!confirm('This clears all local test history and weak-topic analytics on this device. Continue?')) return;
+  localStorage.removeItem('st_users');
+  location.reload();
+}
+
+function getUserRecord() {
+  const users = JSON.parse(localStorage.getItem('st_users') || '{}');
+  if (!users[currentUser.username]) users[currentUser.username] = { name: currentUser.name, password: '', weakTopics: [], history: [] };
+  if (!users[currentUser.username].history) users[currentUser.username].history = [];
+  if (!users[currentUser.username].weakTopics) users[currentUser.username].weakTopics = [];
+  return users;
+}
+function saveUserRecord(users) { localStorage.setItem('st_users', JSON.stringify(users)); }
+
+function initApp() {
+  renderTestSetGrid();
+  renderSubjectGrid();
+  renderTopicList();
+  updateWeaknessSummary();
+  updateStatCards();
+  showDashboard();
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  ['mock', 'subject', 'topic'].forEach(function (t) {
+    document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab);
+    document.querySelector('.tab-btn[data-tab="' + t + '"]').classList.toggle('active', t === tab);
+  });
+}
+
+function renderSubjectGrid() {
+  const grid = document.getElementById('subject-grid');
+  grid.innerHTML = '';
+  SUP.blueprint.forEach(function (b) {
+    const style = SUBJECT_STYLE[b.id] || { emoji: '\uD83D\uDCDA', bg: '#eceefa', fg: '#4b5369' };
+    const topicCount = subjectTopicIds(b.id).length;
+    const btn = document.createElement('button');
+    btn.className = 'subj-card';
+    btn.onclick = (function (id) { return function () { requestStart('subject', id); }; })(b.id);
+    btn.innerHTML =
+      '<span class="subj-emoji" style="background:' + style.bg + ';color:' + style.fg + '">' + style.emoji + '</span>' +
+      '<span class="subj-info"><span class="subj-name">' + (currentLang === 'hi' ? b.hi : b.en) + '</span>' +
+      '<span class="subj-meta">' + topicCount + ' micro-topics &middot; ' + b.n + ' marks in full paper</span>' +
+      '<span class="subj-count">30 Qs Quiz</span></span>';
+    grid.appendChild(btn);
+  });
+}
+
+function renderTopicList() {
+  const wrap = document.getElementById('topic-groups');
+  const q = (document.getElementById('topic-search').value || '').trim().toLowerCase();
+  wrap.innerHTML = '';
+  SUP.blueprint.forEach(function (b) {
+    const topicIds = subjectTopicIds(b.id);
+    const matches = topicIds.filter(function (tid) {
+      const lbl = labelTopic(tid).toLowerCase();
+      const lblEn = SUP.topicLabel(tid).en.toLowerCase();
+      const lblHi = SUP.topicLabel(tid).hi.toLowerCase();
+      return !q || lbl.indexOf(q) !== -1 || lblEn.indexOf(q) !== -1 || lblHi.indexOf(q) !== -1;
+    });
+    if (!matches.length) return;
+    const group = document.createElement('div');
+    group.className = 'topic-group';
+    const style = SUBJECT_STYLE[b.id] || { emoji: '\uD83D\uDCDA' };
+    const head = document.createElement('div');
+    head.className = 'topic-group-head';
+    head.innerHTML = '<span>' + style.emoji + '</span><span>' + (currentLang === 'hi' ? b.hi : b.en) + '</span>';
+    group.appendChild(head);
+    const list = document.createElement('div');
+    list.className = 'topic-list';
+    matches.forEach(function (tid) {
+      const chip = document.createElement('button');
+      chip.className = 'topic-chip';
+      chip.onclick = (function (id) { return function () { requestStart('topic', id); }; })(tid);
+      chip.innerHTML = '<span></span><span class="go">&#9654;</span>';
+      chip.querySelector('span').textContent = labelTopic(tid);
+      list.appendChild(chip);
+    });
+    group.appendChild(list);
+    wrap.appendChild(group);
+  });
+  if (!wrap.children.length) wrap.innerHTML = '<div class="footnote" style="padding:20px 0">No topics match your search.</div>';
+}
+
+function renderTestSetGrid() {
+  const grid = document.getElementById('test-sets-grid');
+  grid.innerHTML = '';
+  const users = getUserRecord();
+  const history = users[currentUser.username].history || [];
+  for (let i = 1; i <= 20; i++) {
+    const attempts = history.filter(function (h) { return h.setId === i; });
+    const best = attempts.length ? Math.max.apply(null, attempts.map(function (a) { return a.percent; })) : null;
+    const btn = document.createElement('button');
+    btn.className = 'set-card';
+    btn.onclick = (function (idx) { return function () { requestStart('set', idx); }; })(i);
+    btn.innerHTML =
+      (best !== null ? '<span class="set-badge ' + (best >= 60 ? 'badge-done' : 'badge-best') + '">Best ' + best + '%</span>' : '') +
+      '<div class="top-row"><span class="set-name">Set ' + i + '</span><span class="set-play">&#9654;</span></div>' +
+      '<span class="set-meta">120 Qs &middot; 360 Marks</span>';
+    grid.appendChild(btn);
+  }
+}
+
+function updateWeaknessSummary() {
+  const users = getUserRecord();
+  const weakTopics = users[currentUser.username].weakTopics || [];
+  const summaryText = document.getElementById('weakness-summary-text');
+  const launchBtn = document.getElementById('adaptive-launch-btn');
+  const resultBtn = document.getElementById('result-adaptive-btn');
+  if (weakTopics.length > 0) {
+    summaryText.textContent = 'Identified ' + weakTopics.length + ' weak micro-topic' + (weakTopics.length > 1 ? 's' : '') + ' across your previous tests.';
+    launchBtn.disabled = false;
+    if (resultBtn) resultBtn.disabled = false;
+  } else {
+    summaryText.textContent = 'No weak areas detected yet. Complete a test to build analytics.';
+    launchBtn.disabled = true;
+  }
+  document.getElementById('stat-weak').textContent = weakTopics.length;
+}
+
+function updateStatCards() {
+  const users = getUserRecord();
+  const history = users[currentUser.username].history || [];
+  document.getElementById('stat-taken').textContent = history.length;
+  if (history.length) {
+    const avg = Math.round(history.reduce(function (a, h) { return a + h.percent; }, 0) / history.length);
+    const best = Math.max.apply(null, history.map(function (h) { return h.percent; }));
+    document.getElementById('stat-avg').textContent = avg + '%';
+    document.getElementById('stat-best').textContent = best + '%';
+  } else {
+    document.getElementById('stat-avg').textContent = '\u2014';
+    document.getElementById('stat-best').textContent = '\u2014';
+  }
+}
+
+function showDashboard() {
+  document.getElementById('dashboard-screen').classList.remove('hidden');
+  document.getElementById('exam-screen').classList.add('hidden');
+  document.getElementById('result-screen').classList.add('hidden');
+  document.getElementById('solutions-screen').classList.add('hidden');
+  document.getElementById('timer-box').style.display = 'none';
+  clearInterval(timerInterval);
+  renderTestSetGrid();
+  updateWeaknessSummary();
+  updateStatCards();
+  switchTab(activeTab);
+}
+
+function requestStart(mode, arg) {
+  if (mode === 'adaptive') {
+    const users = getUserRecord();
+    if ((users[currentUser.username].weakTopics || []).length === 0) return;
+  }
+  pendingStartMode = mode;
+  pendingStartSetId = mode === 'set' ? arg : null;
+  pendingSubjectId = mode === 'subject' ? arg : null;
+  pendingTopicId = mode === 'topic' ? arg : null;
+
+  let sub, qcount;
+  if (mode === 'set') { sub = 'Mock Test - Set ' + arg; qcount = '120'; }
+  else if (mode === 'fresh') { sub = 'Fresh Random Test'; qcount = '120'; }
+  else if (mode === 'adaptive') { sub = 'Adaptive Weak-Topic Retake'; qcount = '30'; }
+  else if (mode === 'subject') { sub = 'Subject Practice - ' + labelSubject(arg); qcount = '30'; }
+  else { sub = 'Topic Practice - ' + labelTopic(arg); qcount = '15'; }
+
+  document.getElementById('instr-subtitle').textContent = sub;
+  document.getElementById('instr-qcount').textContent = qcount;
+  document.getElementById('instr-ack').checked = false;
+  document.getElementById('instr-start-btn').disabled = true;
+  document.getElementById('instructions-modal').classList.remove('hidden');
+}
+function closeInstructions() { document.getElementById('instructions-modal').classList.add('hidden'); }
+
+function beginConfirmedTest() {
+  closeInstructions();
+  if (pendingStartMode === 'set') startFullTest(pendingStartSetId);
+  else if (pendingStartMode === 'fresh') startFreshTest();
+  else if (pendingStartMode === 'adaptive') startAdaptiveTest();
+  else if (pendingStartMode === 'subject') startSubjectTest(pendingSubjectId);
+  else if (pendingStartMode === 'topic') startTopicTest(pendingTopicId);
+}
+
+function startFullTest(setId) { currentSetId = setId; examQuestions = generateTestSet(setId); initExamWorkspace(); }
+function startFreshTest() { currentSetId = 'Fresh'; examQuestions = generateFreshTestSet(); initExamWorkspace(); }
+function startSubjectTest(subjectId) { currentSetId = labelSubject(subjectId) + ' Practice'; examQuestions = generateBySubject(subjectId, 30); initExamWorkspace(); }
+function startTopicTest(topicId) { currentSetId = labelTopic(topicId) + ' Practice'; examQuestions = generateByTopic(topicId, 15); initExamWorkspace(); }
+
+function startAdaptiveTest() {
+  const users = getUserRecord();
+  const weakTopics = users[currentUser.username].weakTopics || [];
+  if (weakTopics.length === 0) return;
+  const fullSet = generateTestSet(1);
+  const pool = fullSet.filter(function (q) { return weakTopics.indexOf(q.topic) !== -1; });
+  if (pool.length === 0) return;
+  examQuestions = [];
+  const n = Math.min(30, pool.length * 3);
+  for (let i = 0; i < n; i++) { const base = pool[i % pool.length]; examQuestions.push(Object.assign({}, base, { id: 'ADAPTIVE_' + (i + 1) })); }
+  currentSetId = 'Adaptive Retake';
+  initExamWorkspace();
+}
+
+function initExamWorkspace() {
+  userAnswers = {}; reviewStatus = {}; visitedStatus = {};
+  currentQuestionIndex = 0;
+  timerSeconds = examQuestions.length * 60;
+
+  document.getElementById('dashboard-screen').classList.add('hidden');
+  document.getElementById('result-screen').classList.add('hidden');
+  document.getElementById('solutions-screen').classList.add('hidden');
+  document.getElementById('exam-screen').classList.remove('hidden');
+  document.getElementById('timer-box').style.display = 'flex';
+
+  renderPalette();
+  renderSubjectJump();
+  loadQuestion(0);
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  const box = document.getElementById('timer-box');
+  timerInterval = setInterval(function () {
+    if (timerSeconds <= 0) { clearInterval(timerInterval); doSubmit(); return; }
+    timerSeconds--;
+    const m = Math.floor(timerSeconds / 60), s = timerSeconds % 60;
+    document.getElementById('time-display').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+    box.classList.toggle('low', timerSeconds <= 300);
+  }, 1000);
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  document.getElementById('header-lang-select').value = lang;
+  if (!document.getElementById('exam-screen').classList.contains('hidden')) loadQuestion(currentQuestionIndex);
+  if (!document.getElementById('result-screen').classList.contains('hidden') && lastResult) renderResultScreen(lastResult);
+  if (!document.getElementById('solutions-screen').classList.contains('hidden')) renderSolutions();
+}
+
+function loadQuestion(index) {
+  currentQuestionIndex = index;
+  visitedStatus[index] = true;
+  const q = examQuestions[index];
+
+  document.getElementById('q-subject-badge').textContent = labelSubject(q.subject);
+  document.getElementById('q-topic-badge').textContent = labelTopic(q.topic);
+  document.getElementById('q-number-title').textContent = 'Q. ' + (index + 1) + ' / ' + examQuestions.length;
+  document.getElementById('q-progress-fill').style.width = (((index + 1) / examQuestions.length) * 100) + '%';
+  document.getElementById('q-text').textContent = currentLang === 'hi' ? q.question_hi : q.question_en;
+
+  const passage = document.getElementById('q-passage');
+  const passageText = currentLang === 'hi' ? q.passage_hi : q.passage_en;
+  if (passageText) { passage.textContent = passageText; passage.classList.remove('hidden'); }
+  else { passage.classList.add('hidden'); }
+
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  const opts = currentLang === 'hi' ? q.options_hi : q.options_en;
+  opts.forEach(function (opt, idx) {
+    const btn = document.createElement('button');
+    const sel = userAnswers[index] === idx;
+    btn.className = 'opt-btn' + (sel ? ' selected' : '');
+    btn.onclick = function () { userAnswers[index] = idx; loadQuestion(index); };
+    btn.innerHTML = '<span class="opt-letter">' + String.fromCharCode(65 + idx) + '</span><span></span>';
+    btn.querySelector('span:last-child').textContent = opt;
+    container.appendChild(btn);
+  });
+
+  document.getElementById('prev-btn').disabled = index === 0;
+  document.getElementById('next-btn').textContent = index === examQuestions.length - 1 ? 'Save' : 'Save & Next \u2192';
+  updatePalette();
+}
+
+function clearResponse() { delete userAnswers[currentQuestionIndex]; loadQuestion(currentQuestionIndex); }
+function saveAndNext() { if (currentQuestionIndex < examQuestions.length - 1) loadQuestion(currentQuestionIndex + 1); else updatePalette(); }
+function markForReviewAndNext() { reviewStatus[currentQuestionIndex] = true; saveAndNext(); }
+function navigateQuestion(step) { loadQuestion(currentQuestionIndex + step); }
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  grid.innerHTML = '';
+  examQuestions.forEach(function (_, idx) {
+    const btn = document.createElement('button');
+    btn.id = 'pal-btn-' + idx;
+    btn.className = 'pal-btn';
+    btn.onclick = function () { loadQuestion(idx); };
+    btn.textContent = idx + 1;
+    grid.appendChild(btn);
+  });
+  updatePalette();
+}
+
+function renderSubjectJump() {
+  const wrap = document.getElementById('subject-jump');
+  wrap.innerHTML = '';
+  const firstIdx = {};
+  examQuestions.forEach(function (q, idx) { if (!(q.subject in firstIdx)) firstIdx[q.subject] = idx; });
+  Object.keys(firstIdx).forEach(function (subj) {
+    const btn = document.createElement('button');
+    btn.onclick = function () { loadQuestion(firstIdx[subj]); };
+    const s1 = document.createElement('span'); s1.textContent = labelSubject(subj);
+    const s2 = document.createElement('span'); s2.style.color = 'var(--muted-2)'; s2.textContent = 'Q' + (firstIdx[subj] + 1);
+    btn.appendChild(s1); btn.appendChild(s2);
+    wrap.appendChild(btn);
+  });
+}
+
+function updatePalette() {
+  examQuestions.forEach(function (_, idx) {
+    const btn = document.getElementById('pal-btn-' + idx);
+    if (!btn) return;
+    const ans = userAnswers.hasOwnProperty(idx), mrk = reviewStatus[idx], vis = visitedStatus[idx];
+    btn.className = 'pal-btn ' + (mrk && ans ? 'pal-marked-answered' : mrk ? 'pal-marked' : ans ? 'pal-answered' : vis ? 'pal-not-answered' : 'pal-not-visited');
+  });
+}
+
+function confirmSubmitExam() {
+  const answered = Object.keys(userAnswers).length;
+  document.getElementById('sc-answered').textContent = answered;
+  document.getElementById('sc-notanswered').textContent = examQuestions.length - answered;
+  document.getElementById('submit-modal').classList.remove('hidden');
+}
+function closeSubmitModal() { document.getElementById('submit-modal').classList.add('hidden'); }
+function doSubmit() { closeSubmitModal(); submitExam(); }
+
+function submitExam() {
+  clearInterval(timerInterval);
+  document.getElementById('exam-screen').classList.add('hidden');
+  document.getElementById('timer-box').style.display = 'none';
+  document.getElementById('result-screen').classList.remove('hidden');
+
+  let correct = 0, incorrect = 0;
+  const topicStats = {}, subjectStats = {};
+  examQuestions.forEach(function (q, idx) {
+    if (!topicStats[q.topic]) topicStats[q.topic] = { total: 0, correct: 0 };
+    if (!subjectStats[q.subject]) subjectStats[q.subject] = { total: 0, correct: 0 };
+    topicStats[q.topic].total++; subjectStats[q.subject].total++;
+    if (userAnswers.hasOwnProperty(idx)) {
+      if (userAnswers[idx] === q.answer) { correct++; topicStats[q.topic].correct++; subjectStats[q.subject].correct++; }
+      else incorrect++;
+    }
+  });
+
+  const skipped = examQuestions.length - correct - incorrect;
+  const maxScore = examQuestions.length * 3;
+  const score = correct * 3 - incorrect * 1;
+  const percent = Math.max(0, Math.round((score / maxScore) * 100));
+  const accuracy = (correct + incorrect) > 0 ? Math.round((correct / (correct + incorrect)) * 100) : 0;
+
+  const localWeakTopics = [];
+  Object.keys(topicStats).forEach(function (t) { const s = topicStats[t]; const perc = s.total ? (s.correct / s.total) * 100 : 0; if (perc < 60) localWeakTopics.push(t); });
+
+  const users = getUserRecord();
+  const rec = users[currentUser.username];
+  const existingWeak = new Set(rec.weakTopics || []);
+  localWeakTopics.forEach(function (t) { existingWeak.add(t); });
+  Object.keys(topicStats).forEach(function (t) { const s = topicStats[t]; if (s.total && (s.correct / s.total) >= 0.75) existingWeak.delete(t); });
+  rec.weakTopics = Array.from(existingWeak);
+  rec.history = rec.history || [];
+  rec.history.push({ setId: currentSetId, date: new Date().toISOString(), score: score, maxScore: maxScore, percent: percent, correct: correct, incorrect: incorrect, skipped: skipped, accuracy: accuracy });
+  saveUserRecord(users);
+
+  lastResult = {
+    correct: correct, incorrect: incorrect, skipped: skipped, score: score, maxScore: maxScore, percent: percent, accuracy: accuracy,
+    topicStats: topicStats, subjectStats: subjectStats, setId: currentSetId,
+    snapshot: examQuestions.map(function (q, idx) { return { q: q, userAnswer: userAnswers.hasOwnProperty(idx) ? userAnswers[idx] : null, marked: !!reviewStatus[idx] }; })
+  };
+  renderResultScreen(lastResult);
+  updateWeaknessSummary();
+}
+
+function renderResultScreen(r) {
+  document.getElementById('result-set-title').textContent = 'Set: ' + r.setId;
+  document.getElementById('res-score').textContent = r.score + ' / ' + r.maxScore;
+  document.getElementById('res-correct').textContent = r.correct;
+  document.getElementById('res-incorrect').textContent = r.incorrect;
+  document.getElementById('res-skipped').textContent = r.skipped;
+  document.getElementById('res-accuracy').textContent = r.accuracy + '%';
+  const verdict = document.getElementById('res-verdict');
+  verdict.textContent = r.percent >= 75 ? 'Excellent work!' : r.percent >= 50 ? 'Good effort - keep going!' : 'Needs more practice';
+
+  const barsWrap = document.getElementById('subject-bars');
+  barsWrap.innerHTML = '';
+  Object.keys(r.subjectStats).sort(function (a, b) { return labelSubject(a).localeCompare(labelSubject(b)); }).forEach(function (subj) {
+    const s = r.subjectStats[subj];
+    const pct = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+    const color = pct >= 75 ? 'var(--success)' : pct >= 50 ? 'var(--accent-600)' : 'var(--danger)';
+    const row = document.createElement('div');
+    row.className = 'sbar-row';
+    const lbl = document.createElement('span'); lbl.className = 'sbar-label'; lbl.textContent = labelSubject(subj);
+    const track = document.createElement('span'); track.className = 'sbar-track';
+    const fill = document.createElement('span'); fill.className = 'sbar-fill'; fill.style.width = pct + '%'; fill.style.background = color;
+    track.appendChild(fill);
+    const pctEl = document.createElement('span'); pctEl.className = 'sbar-pct'; pctEl.textContent = s.correct + '/' + s.total;
+    row.appendChild(lbl); row.appendChild(track); row.appendChild(pctEl);
+    barsWrap.appendChild(row);
+  });
+
+  const heatmap = document.getElementById('heatmap-container');
+  heatmap.innerHTML = '';
+  Object.keys(r.topicStats).forEach(function (top) {
+    const stat = r.topicStats[top];
+    const perc = stat.total ? (stat.correct / stat.total) * 100 : 0;
+    const color = perc >= 75 ? 'heat-strong' : perc >= 50 ? 'heat-moderate' : 'heat-weak';
+    const div = document.createElement('div');
+    div.className = 'heat-card';
+    const left = document.createElement('div');
+    const tname = document.createElement('div'); tname.className = 't-name'; tname.textContent = labelTopic(top);
+    const tsub = document.createElement('div'); tsub.className = 't-sub'; tsub.textContent = stat.correct + '/' + stat.total + ' correct';
+    left.appendChild(tname); left.appendChild(tsub);
+    const pctSpan = document.createElement('span'); pctSpan.className = 'heat-pct ' + color; pctSpan.textContent = perc.toFixed(0) + '%';
+    div.appendChild(left); div.appendChild(pctSpan);
+    heatmap.appendChild(div);
+  });
+}
+
+function showSolutions() {
+  document.getElementById('result-screen').classList.add('hidden');
+  document.getElementById('solutions-screen').classList.remove('hidden');
+  document.getElementById('sol-set-title').textContent = 'Set ' + lastResult.setId;
+  solutionFilter = 'all';
+  renderRevFilters();
+  renderSolutions();
+}
+function backFromSolutions() {
+  document.getElementById('solutions-screen').classList.add('hidden');
+  document.getElementById('result-screen').classList.remove('hidden');
+}
+function renderRevFilters() {
+  const wrap = document.getElementById('rev-filters');
+  const filters = [['all', 'All'], ['correct', 'Correct'], ['incorrect', 'Incorrect'], ['skipped', 'Unattempted'], ['marked', 'Marked']];
+  wrap.innerHTML = '';
+  filters.forEach(function (pair) {
+    const key = pair[0], label = pair[1];
+    const btn = document.createElement('button');
+    btn.className = 'rev-filter' + (solutionFilter === key ? ' active' : '');
+    btn.textContent = label;
+    btn.onclick = function () { solutionFilter = key; renderRevFilters(); renderSolutions(); };
+    wrap.appendChild(btn);
+  });
+}
+function renderSolutions() {
+  const list = document.getElementById('solutions-list');
+  list.innerHTML = '';
+  lastResult.snapshot.forEach(function (item, idx) {
+    const isCorrect = item.userAnswer !== null && item.userAnswer === item.q.answer;
+    const isIncorrect = item.userAnswer !== null && item.userAnswer !== item.q.answer;
+    const status = isCorrect ? 'correct' : isIncorrect ? 'incorrect' : 'skipped';
+    if (solutionFilter === 'marked') { if (!item.marked) return; }
+    else if (solutionFilter !== 'all' && solutionFilter !== status) return;
+
+    const opts = currentLang === 'hi' ? item.q.options_hi : item.q.options_en;
+    const card = document.createElement('div');
+    card.className = 'rev-card';
+
+    const head = document.createElement('div'); head.className = 'rev-card-head';
+    const qno = document.createElement('span'); qno.className = 'rev-qno';
+    qno.textContent = 'Q' + (idx + 1) + ' \u00b7 ' + labelSubject(item.q.subject) + ' \u00b7 ' + labelTopic(item.q.topic);
+    const st = document.createElement('span'); st.className = 'rev-status ' + status;
+    st.textContent = status === 'correct' ? 'Correct' : status === 'incorrect' ? 'Incorrect' : 'Unattempted';
+    head.appendChild(qno); head.appendChild(st);
+    card.appendChild(head);
+
+    const qtext = document.createElement('div');
+    qtext.style.cssText = 'font-size:12.5px;font-weight:700;margin-bottom:9px;line-height:1.55';
+    qtext.textContent = currentLang === 'hi' ? item.q.question_hi : item.q.question_en;
+    card.appendChild(qtext);
+
+    opts.forEach(function (opt, oi) {
+      const row = document.createElement('div');
+      let cls = '';
+      if (oi === item.q.answer) cls = 'right';
+      else if (oi === item.userAnswer) cls = 'wrong-picked';
+      row.className = 'rev-opt ' + cls;
+      const letter = document.createElement('span'); letter.className = 'opt-letter'; letter.style.flexShrink = '0'; letter.textContent = String.fromCharCode(65 + oi);
+      const txt = document.createElement('span'); txt.textContent = opt;
+      row.appendChild(letter); row.appendChild(txt);
+      card.appendChild(row);
+    });
+
+    const exp = document.createElement('div'); exp.className = 'rev-exp';
+    exp.textContent = (currentLang === 'hi' ? item.q.exp_hi : item.q.exp_en) || '';
+    card.appendChild(exp);
+
+    list.appendChild(card);
+  });
+  if (!list.children.length) list.innerHTML = '<div class="footnote" style="padding:30px 0">No questions in this filter.</div>';
+}
+
+initApp();
+</script>
+</body>
+</html>
