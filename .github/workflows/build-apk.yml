@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:        # manual "Run workflow" button
   push:
     branches: [main, master]
 
@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Build offline web assets
-        run: node scripts/build-web.js
+      - name: Build offline web assets (Tailwind + Font Awesome)
+        run: npm run build:web
 
       - name: Create Android project
         run: npx cap add android
@@ -36,13 +36,13 @@ jobs:
       - name: Sync web assets into Android project
         run: npx cap sync android
 
-      - name: Use fixed signing key
+      - name: Use fixed signing key (so updates install over old versions)
         run: |
           mkdir -p ~/.android
           cp signing/debug.keystore ~/.android/debug.keystore
 
-      - name: Keep classic status-bar layout
-        run: sed -i 's/targetSdkVersion = 35/targetSdkVersion = 34/g' android/variables.gradle || true
+      - name: Keep classic status-bar layout (target SDK 34)
+        run: sed -i 's/targetSdkVersion = 35/targetSdkVersion = 34/' android/variables.gradle
 
       - name: Build APK
         working-directory: android
